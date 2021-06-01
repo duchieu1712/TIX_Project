@@ -1,0 +1,120 @@
+.News-content {
+    padding-top: 40px;
+    text-align: center;
+    max-width: 940px;
+    margin: 0 auto;
+    .nav-tabs {
+        justify-content: center;
+        border: none;
+        background-image: url(../../../Assets/img/back-news.png);
+        background-size: cover;
+        height: 150px;
+        padding-top: 100px;
+        .nav-link {
+            border: none;
+            height: 24px;
+            line-height: 24px;
+            font-size: 20px;
+            font-weight: 500;
+            color: #000;
+            background: transparent;
+            transition: all 0.2s;
+            &:hover {
+                font-size: 24px;
+            }
+        }
+        .active {
+            font-size: 24px;
+            color: #fa5238;
+        }
+    }
+}
+
+// News24h
+.content {
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+        .col-6,
+        .col-4 {
+            padding: 0 7px;
+            text-align: left;
+            img {
+                width: 100%;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-bottom: 10px;
+            }
+            a {
+                display: -webkit-box;
+                text-decoration: none;
+                font-size: 16px;
+                color: #000;
+                transition: all 0.3s;
+                font-weight: 500;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 42px;
+                line-height: 20px;
+                &:hover {
+                    color: #fa5238;
+                }
+            }
+            p {
+                margin-top: 5px;
+                font-size: 13px;
+                color: #4a4a4a;
+                height: 60px;
+                line-height: 20px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 15px;
+            }
+            .item {
+                width: 100%;
+                height: 70px;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 10px;
+                    margin-bottom: 0;
+                }
+                a {
+                    height: 41px;
+                    cursor: pointer;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+    .bottom {
+        width: 100%;
+        // height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            font-size: 14px;
+            color: #949494;
+            border: 1px solid #949494;
+            border-radius: 4px;
+            text-align: center;
+            background: 0 0;
+            padding: 7px 25px;
+            transition: all 0.2s;
+            margin: auto;
+            margin-top: 35px;
+            margin-bottom: 40px;
+            display: block;
+            &:hover{
+                background-color: #fb4226;
+                border-color: #fb4226;
+                color: #fff;
+            }
+        }
+    }
+}

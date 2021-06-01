@@ -1,0 +1,51 @@
+.reviewContent {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+    .newComment {
+        background-color: #fff;
+        border-radius: 4px;
+        border: 1px solid #e8e8e9;
+        padding: 20px;
+        .Mui-focused {
+            color: #fb4226;
+        }
+        .MuiRating-root {
+            align-items: center;
+            .MuiRating-label {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .listComment {
+        margin-top: 20px;
+        .itemComment {
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #e8e8e9;
+            padding: 20px;
+            margin-top: 10px;
+            .headComment {
+                justify-content: space-between;
+                align-items: center;
+                .infoUser{
+                    align-items: center;
+                    span{
+                        margin-left: 10px;
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+                .MuiRating-label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        p{
+            color: #4a4a4a;
+            text-align: left;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+    }
+}

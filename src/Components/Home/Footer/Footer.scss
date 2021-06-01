@@ -1,0 +1,112 @@
+.footer {
+    background-color: #222;
+    .footer_info {
+      .footer_TIX {
+        .footer_FAQ,
+        .footer_use {
+          a {
+            display: block;
+            color: #949494;
+            font-size: 12px;
+            &:hover {
+              text-decoration: none;
+              color: white;
+            }
+          }
+        }
+      }
+      .title {
+        color: white;
+        font-size: 11px;
+      }
+      .footer_Partner {
+        a {
+          margin-right: 14px;
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+        }
+      }
+      .footer_Mobile,
+      .footer_Social {
+        text-align: center;
+        img {
+          width: auto;
+          height: 30px;
+          margin-right: 10px;
+        }
+      }
+    }
+    .footer_hr {
+      margin: 20px 0;
+      border-top: 1px solid #4a4a4a;
+      box-sizing: content-box;
+    }
+    .footer_aboutTIX {
+      .vngIcon {
+        width: 80px;
+        border-radius: 8px;
+      }
+      .title {
+        color: white;
+        font-size: 12px;
+      }
+      p {
+        color: #949494;
+        font-size: 12px;
+        margin-bottom: 0;
+      }
+      a {
+        color: #fb4226;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      .bct {
+        width: 110px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .footer_info {
+      .footer_TIX {
+        .title {
+          display: none;
+        }
+        .footer_FAQ {
+          display: none;
+        }
+      }
+      .footer_Partner,
+      .footer_Mobile {
+        display: none;
+      }
+      .footer_Social {
+        .title {
+          display: none;
+        }
+      }
+    }
+    .footer_aboutTIX {
+      .footer_small {
+        text-align: center;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 769px) {
+    .footer_TIX {
+      .footer_use {
+        display: flex;
+        justify-content: center;
+        a {
+          margin: 10px 5px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  
