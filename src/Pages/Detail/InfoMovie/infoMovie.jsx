@@ -2,7 +2,6 @@ import React from 'react';
 import './infoMovie.scss';
 
 const InfoMovie = (props) => {
-    console.log(props);
     return (
         <div className="infoContent row">
             <div className="infoDetail col-6">

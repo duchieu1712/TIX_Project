@@ -23,7 +23,7 @@ const Header = () => {
         data-toggle="collapse"
         data-target="#navbarNav"
         aria-controls="navbarNav"
-        aria-expanded="false"
+        aria-expanded="true"
         aria-label="Toggle navigation"
       >
         <span className="custom-toggler-icon bar1" />

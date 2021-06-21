@@ -1,22 +1,12 @@
-import React, { useEffect, useState, Component } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { getCinemaList } from "../../../Redux/actions/cinema";
 import "./cinema.scss";
-// import CinemaSys from "./CinemaSys.jsx/CinemaSys";
 
-const CinemaList = () => {
-  const { cinemaList } = useSelector((state) => state.cinemaReducer);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCinemaList());
-  }, []);
+const CinemaList = (props) => {
+  const { cinemaList } = props;
 
   const getRap = (cinemaList) => {
     return cinemaList.map((item, index) => {
-      // mình tự gắn key thêm
       return (
         <a
           key={index}
@@ -40,7 +30,6 @@ const CinemaList = () => {
         <nav>
           <div className="nav nav-tabs listRap" id="nav-tab" role="tablist">
             {lstCumRap.map((cumRap, index) => {
-              // chỗ active này copy paste code trên nên mình tự check lại
               return (
                 <a
                   className={`nav-link infoRap ${index === 0 ? "active" : ""}`}
@@ -76,12 +65,6 @@ const CinemaList = () => {
         </div>
       </div>
     );
-
-    // return lstCumRap.map((cumRap, index) => {
-    //   return (
-    //     <p>{cumRap.tenCumRap}</p>
-    //   )
-    // })
   };
 
   const getLichChieu = (danhSachPhim) => {

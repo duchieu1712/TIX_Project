@@ -4,8 +4,38 @@ import { bookingTicket, getTheater } from "../../Redux/actions/theater";
 import WeekendSharpIcon from "@material-ui/icons/WeekendSharp";
 import WarningIcon from "@material-ui/icons/Warning";
 import "./checkout.scss";
+import { Button } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import LoadingPage from "../../Components/LoadingPage/LoadingPage";
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 const Checkout = (props) => {
-  // console.log(props);
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const { theater, loading, error } = useSelector(
     (state) => state.theaterReducer
   );
@@ -64,8 +94,19 @@ const Checkout = (props) => {
   const handleBooking = (danhSachVe) => {
     dispatch(bookingTicket(danhSachVe));
     setSeatPicking([]);
+    handleOpen()
+    handleResetTotal()
   };
+  const handleResetTotal = () => {
+    setTotal(0)
+  }
 
+  if (loading) {
+    return <LoadingPage />;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
   console.log(theater);
   return (
     <div className="backgroundTheater">
@@ -154,33 +195,36 @@ const Checkout = (props) => {
               <p>Mã vé sẽ được gửi qua tin nhắn và email đã nhập</p>
             </div>
           </div>
-          <button
+          <Button
             className={`${
               danhSachVe.danhSachVe[0] !== undefined ? "activeButton" : ""
             }`}
             disabled={danhSachVe.danhSachVe.length === 0 ? true : false}
             onClick={() => handleBooking(danhSachVe)}
-            data-toggle="modal"
-            data-target="#bookingModal"
           >
             Đặt vé
-          </button>
-          <div
-            className="modal fade"
-            id="bookingModal"
-            tabIndex={-1}
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Đặt vé thành công
-                </h5>
-                <div className="modal-body">Xin cảm ơn!!!</div>
-              </div>
-            </div>
+          </Button>
+          
+          <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Đặt vé thành công</h2>
+            <p id="transition-modal-description">Xin cảm ơn quý khách !!!</p>
           </div>
+        </Fade>
+      </Modal>
+
         </div>
       </div>
     </div>

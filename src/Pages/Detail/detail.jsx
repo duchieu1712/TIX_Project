@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button";
-import React, { useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Rating from "@material-ui/lab/Rating";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,22 +7,43 @@ import "./detail.scss";
 import ShowtimeMovie from "./ShowtimeMovie/showtimeMovie";
 import InfoMovie from "./InfoMovie/infoMovie";
 import ReviewMovie from "./ReviewMovie/reviewMovie";
-import backapp from '../../Assets/img/backapp.jpg';
-import playVideo from '../../Assets/img/play-video.png';
-import close from '../../Assets/img/close.png';
+import backapp from "../../Assets/img/backapp.jpg";
 import { getCinemaByMovie } from "../../Redux/actions/cinema";
 import LoadingPage from "../../Components/LoadingPage/LoadingPage";
-// import LoadingPage from "../../Components/LoadingPage/LoadingPage";
+import PopupTrailer from "../../Components/Home/popupTrailer/popupTrailer"
 
 const Detail = (props) => {
-  const {cinemaByMovie} = useSelector(state => state.cinemaReducer)
+  const { cinemaByMovie, loading, error } = useSelector(
+    (state) => state.cinemaReducer
+  );
+  const [trailer,setTrailer] = useState("");
+  const [open,setOpen] = useState(false);
+  const handleTrailer = (trailer) => {
+    setTrailer(trailer)
+    setOpen(!open)
+  }
+  const handleClose = (close) => {
+    setOpen(close)
+  }
+
   const dispatch = useDispatch();
-  useEffect (() => {
+
+  useEffect(() => {
     dispatch(getCinemaByMovie(props.match.params.movieId));
-  },[])
-  useEffect (() => {
-    document.title = `CHI TIẾT - ${cinemaByMovie.tenPhim}`
-  },[cinemaByMovie.tenPhim])
+  }, [props.match.params.movieId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = `CHI TIẾT - ${cinemaByMovie.tenPhim}`;
+  }, [cinemaByMovie.tenPhim]);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   let timeMovie = Math.floor(Math.random() * 100) + 80;
   let rateMovie = Math.floor(Math.random() * 5) + 5;
@@ -31,60 +52,32 @@ const Detail = (props) => {
       <img className="backGroundBlur" src={backapp} alt="" />
       <div className="introDetail row">
         <div className="col-3">
-          <a
+          <button
+            type="button"
             className="play-btn"
-            data-toggle="modal"
-            data-target="#exampleModal3"
+            onClick={() => handleTrailer(cinemaByMovie.trailer)}
           >
-            <img src={playVideo} alt />
-          </a>
-          <div
-            className="modal fade"
-            id="exampleModal3"
-            tabIndex={-1}
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  {/* <h5 className="modal-title" id="exampleModalLabel">Modal title</h5> */}
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">
-                      <img src={close} alt="" />
-                    </span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <iframe
-                    width="898"
-                    height="530"
-                    src={cinemaByMovie.trailer}
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
+            <img src="/img/play-video.png" alt="" />
+          </button>
+          <PopupTrailer
+            trailer={trailer}
+            open={open}
+            onHandleClose={handleClose}
+          />
           <img className="introImg" src={cinemaByMovie.hinhAnh} alt="" />
         </div>
         <div className="col-6">
           <div className="introContent">
-            <p>{cinemaByMovie.ngayKhoiChieu?.slice(0,10)}</p>
+            <p>{cinemaByMovie.ngayKhoiChieu?.slice(0, 10)}</p>
             <h4>{cinemaByMovie.tenPhim}</h4>
             <p className="timeRate">
-                {timeMovie} phút - TIX {rateMovie}.0 - IMDb
+              {timeMovie} phút - TIX {rateMovie}.0 - IMDb
             </p>
-            <Button variant="contained" color="secondary" size="large">
-              MUA VÉ
-            </Button>
+            <a href="#myTab" className="text-decoration-none">
+              <Button variant="contained" color="secondary" size="large">
+                MUA VÉ
+              </Button>
+            </a>
           </div>
         </div>
         <div className="col-3">
@@ -153,7 +146,7 @@ const Detail = (props) => {
             role="tabpanel"
             aria-labelledby="home-tab"
           >
-            <ShowtimeMovie cinemaByMovie={cinemaByMovie}/>
+            <ShowtimeMovie cinemaByMovie={cinemaByMovie} />
           </div>
           <div
             className="tab-pane fade"

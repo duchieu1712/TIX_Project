@@ -31,7 +31,6 @@
                         font-size: 2rem;
                     }
                 }
-                
             }
             .seatType {
                 margin-top: 50px;
@@ -108,7 +107,7 @@
                     }
                 }
             }
-            button{
+            Button {
                 position: absolute;
                 bottom: 0;
                 width: 100%;
@@ -116,6 +115,12 @@
                 border: none;
                 outline: none;
                 font-size: 25px;
+                background-color: gainsboro;
+                border-radius: 0;
+            }
+            .activeButton {
+                background-color: #fb4226;
+                color: #fff;
             }
         }
     }
@@ -127,9 +132,5 @@
     }
     .picked {
         color: lightgray;
-    }
-    .activeButton{
-        background-color: #fb4226;
-        color: #fff;
     }
 }

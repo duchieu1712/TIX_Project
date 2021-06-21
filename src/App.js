@@ -8,11 +8,12 @@ import Checkout from './Pages/Checkout/checkout';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import AdminRoute from './Guards/AdminRoute/AdminRoute';
-import UserManagement from './Components/Admin/UserManagement/UserManagement';
 import HomeLayout from './Layouts/HomeLayout/HomeLayout';
 import AuthLayout from './Layouts/AuthLayout/AuthLayout';
 import CheckoutRoute from './Guards/CheckoutRoute/CheckoutRoute';
-// import AdminLayout from './Layouts/AdminLayout/AdminLayout';
+import AdminLayout from './Layouts/AdminLayout/AdminLayout';
+import UserManagement from './Pages/UserManagement/UserManagement';
+import MovieManagement from './Pages/MovieMangement/MovieManagement';
 
 
 function App() {
@@ -28,8 +29,7 @@ function App() {
           </HomeLayout>
         </Route>
 
-
-        <CheckoutRoute path="/checkout/:timeId" component={Checkout}/>
+        <CheckoutRoute path="/checkout/:timeId" component={Checkout} />
 
         <Route exact path={['/login', '/signup']}>
           <AuthLayout>
@@ -55,7 +55,14 @@ function App() {
           </AdminLayout>
         </Route> */}
 
-        <AdminRoute path='/admin/user' component={UserManagement}/>
+        <Route exact path={["/admin/user", "/admin/movie"]}>
+          <AdminLayout >
+            <Switch >
+              <AdminRoute exact path='/admin/user' component={UserManagement} />
+              <AdminRoute exact path='/admin/movie' component={MovieManagement} />
+            </Switch>
+          </AdminLayout>
+        </Route>
 
         <Redirect to='/' />
       </Switch>

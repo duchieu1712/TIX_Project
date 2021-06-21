@@ -1,4 +1,4 @@
-.movieCarousel {
+.carousel {
     margin-top: 60px;
     box-shadow: 0 0 10px ;
     ol {
@@ -26,30 +26,10 @@
             z-index: 3;
             background: 0 0;
             border: none;
+            outline: none;
             cursor: pointer;
             opacity: 0;
             transition: all 0.5s;
-        }
-        .modal{
-            .modal-dialog{
-                max-width: max-content;
-                .modal-content{
-                    background-color: transparent;
-                    border: none;
-                    width: max-content;
-                    .modal-header{
-                        border: none;
-                        .close{
-                            border: none;
-                            outline: none;
-                            img{
-                                position: absolute;
-                                
-                            }
-                        }
-                    }
-                }
-            }          
         }
         &:hover {
             .play-btn {
@@ -63,10 +43,10 @@
             height: 50px;
         }
         .left {
-            margin-right: 60%;
+            margin-right: 70%;
         }
         .right {
-            margin-left: 60%;
+            margin-left: 70%;
         }
     }
 }

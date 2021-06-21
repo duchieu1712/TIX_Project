@@ -50,6 +50,9 @@
                 background-color: rgba(238, 238, 238, 0.88);
             }
         }
+        @media screen and (max-width: 688px) {            
+            width: 170px;
+        }
     }
     .showTimeList {
         border: 1px solid #ebebec;
@@ -110,14 +113,13 @@
                 }
             }
         }
+        @media screen and (max-width: 688px) {            
+            width: 250px;
+        }
     }
-    // .cinemaFooter{
-    //     background-image: url(../../../Assets/img/back-news.png);
-    //     width: 100%;
-    //     height: 120px;
-    //     background-size: 100%;
-    // }
 }
+
+
 ::-webkit-scrollbar {
     width: 4px;
   }

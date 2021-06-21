@@ -9,10 +9,11 @@ import {
 
 const initialState = {
   theater: {},
-  seatList: [],
   loading: false,
   error: null,
 };
+
+
 
 const theaterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,7 +21,7 @@ const theaterReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case GET_THEATER_SUCCESS: {
-      return { ...state, loading: false, theater: action.payload.data };
+      return { ...state, loading: false, theater: action.payload.data};
     }
     case GET_THEATER_FAIL: {
       return { ...state, loading: false, error: action.payload.error };
@@ -31,8 +32,8 @@ const theaterReducer = (state = initialState, action) => {
     case BOOKING_SUCCESS: {
       const gheDaChon = action.payload.seatSelected;
       gheDaChon.map(seat => {
-        const index = state.seatList.danhSachGhe.findIndex(seatCustom => seatCustom.maGhe === seat.maGhe)
-        state.seatList.danhSachGhe[index].daDat = true;
+        const index = state.theater.danhSachGhe?.findIndex(seatCustom => seatCustom.maGhe === seat.maGhe)
+        state.theater.danhSachGhe[index].daDat = true;
       })
       return {
         ...state,
