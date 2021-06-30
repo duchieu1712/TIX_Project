@@ -1,0 +1,14 @@
+.MuiListItem-button {
+    &:hover {
+        color: #fb4226;
+        .MuiListItemIcon-root{
+            color: #fb4226;
+        }
+    }
+    &:focus{
+        color: #fb4226;
+        .MuiListItemIcon-root{
+            color: #fb4226;
+        }
+    }
+}

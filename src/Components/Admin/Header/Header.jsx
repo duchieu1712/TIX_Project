@@ -7,7 +7,7 @@ import { useStyles } from "./style.js";
 import MenuIcon from "@material-ui/icons/Menu";
 import Hidden from "@material-ui/core/Hidden";
 
-const Header = (onMobileNavOpen) => {
+const Header = ({onMobileNavOpen}) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -15,16 +15,15 @@ const Header = (onMobileNavOpen) => {
         <Toolbar>
           <Hidden mdUp>
             <IconButton
-              edge="start"
               className={classes.menuButton}
               color="inherit"
-              onClick={onMobileNavOpen}
+              onClick={() => {onMobileNavOpen()}}
             >
               <MenuIcon />
             </IconButton>
           </Hidden>
 
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} noWrap>
             <img src="/img/web-logo.png" alt="" width="40" height="40" />
           </Typography>
         </Toolbar>

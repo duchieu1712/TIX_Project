@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
+import { shadows } from '@material-ui/system';
 import TheatersIcon from "@material-ui/icons/Theaters";
 import PersonIcon from "@material-ui/icons/Person";
 import ListItemLink from "../ListItemLink/ListItemLink";
@@ -31,35 +30,32 @@ const useStyles = makeStyles(() => ({
   },
   avatar: {
     cursor: "pointer",
-    width: 64,
-    height: 64,
+    width: 65,
+    height: 65,
   },
 }));
 
 const NavBar = ({ openMobile, onMobileClose }) => {
   const classes = useStyles();
   //   const location = useLocation();
-//   useEffect(() => {
-//     if (openMobile && onMobileClose) {
-//       onMobileClose();
-//     }
-//   }, []);
+  //   useEffect(() => {
+  //     if (openMobile && onMobileClose) {
+  //       onMobileClose();
+  //     }
+  //   }, []);
 
   const content = (
-    <Box height="100%" display="flex" flexDirection="column">
-      <Box alignItems="center">
-        <Avatar src="/img/avatar.png" />
+    <Box height="100%" display="flex" flexDirection="column" boxShadow={3}>
+      <Box display="flex" flexDirection="column" alignItems="center" p={3}>
+        <Avatar src="/img/avatar.png" className={classes.avatar} />
         <Typography variant="h5">{currentUser.hoTen}</Typography>
-        <Typography>Admin Page</Typography>
+        <Typography variant="body2">Admin Page</Typography>
       </Box>
 
       <Divider />
 
       <Box>
         <List>
-          {/* {modules.map((item) => (
-            <ListItemLink to={item.href} primary={item.title} icon={item.icon}/>
-          ))} */}
           <ListItemLink
             to="/admin/movie"
             primary="Quản lý phim"

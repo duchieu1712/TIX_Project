@@ -13,7 +13,7 @@ const MovieList = (props) => {
 
     useEffect(() => {
         dispatch(getMovieList(props.showingOrComing));
-    }, []);
+    }, [props.showingOrComing]);
 
     function SampleNextArrow(props) {
         const { className, style, onClick } = props;

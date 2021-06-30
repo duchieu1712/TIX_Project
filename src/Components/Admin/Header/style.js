@@ -10,7 +10,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        display: 'none',
+        display: 'flex',
+        justifyContent: 'flex-end',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
