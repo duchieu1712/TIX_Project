@@ -48,8 +48,8 @@ export const getMovieList = (showingOrComing) => {
 export const addMovie = (movie) => {
   // Có hinhAnh là file nên phải chuyển formData
   const formData = new FormData();
-  for (const form in movie) {
-    formData.append(form, movie[form]);
+  for (const key in movie) {
+    formData.append(key, movie[key]);
   }
   return (dispatch) => {
     dispatch({
@@ -73,8 +73,8 @@ export const addMovie = (movie) => {
 };
 export const updateMovie = (movie) => {
   const formData = new FormData();
-  for(const form in movie){
-    formData.append(form, movie[form])
+  for(const key in movie){
+    formData.append(key, movie[key])
   }
   return (dispatch) => {
     dispatch({type: UPDATE_MOVIE_REQUEST})

@@ -32,11 +32,12 @@ const ModalForm = (props) => {
   }, [movieUpdate]);
   const dispatch = useDispatch();
 
+  // hàm đổi data ngay khi điền vào ô input
   const handleChange = (type) => (event) => {
     if (type === "hinhAnh") {
       setMovie((movie) => ({
         ...movie,
-        hinhAnh: event.target.file[0]
+        hinhAnh: event.target.files[0] 
       }));
     } else {
       setMovie({ ...movie, [type]: event.target.value });
