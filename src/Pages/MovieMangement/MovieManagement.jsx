@@ -16,9 +16,11 @@ import InputBase from "@material-ui/core/InputBase";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import VideoCallIcon from '@material-ui/icons/VideoCall';
 import { deleteMovie, getMovieList } from "../../Redux/actions/movie";
 import Dialog from "@material-ui/core/Dialog";
 import ModalForm from "./ModalForm/ModalForm";
+import ModalFormShowtime from "./ModalForm/ModalFormShowtime";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -104,7 +106,7 @@ const columns = [
   {
     id: "tuyChinh",
     label: "Tùy chỉnh",
-    minWidth: 170,
+    minWidth: 200,
     align: "center",
     format: (value) => value.toFixed(2),
   },
@@ -118,6 +120,8 @@ const MovieManagement = () => {
   const [movieSelect,setMovieSelect] = useState({})
   const [isUpdate,setIsUpdate] = useState(false);
   const [valueTarget, setValueTarget] = useState("");
+  const [openShowtime, setOpenShowtime] = useState(false);
+  const [movieAddShowtime, setMovieAddShowtime] = useState(0);
 
   const { movieList,error } = useSelector((state) => state.movieReducer);
   const dispatch = useDispatch();
@@ -128,9 +132,15 @@ const MovieManagement = () => {
     document.title = "TIX - Quản lý phim";
   }, []);
 
+  // Của phim
   const handleModal = () => {
     setOpen(!open);
   };
+
+  // Của lịch chiếu
+  const handleModalShowtime = () => {
+    setOpenShowtime(!openShowtime)
+  }
 
   // Hàm chỉnh dòng/trang
   const handleChangePage = (event, newPage) => {
@@ -165,6 +175,17 @@ const MovieManagement = () => {
   // hàm xóa phim
   const handleDelete = (movieId) => {
     dispatch(deleteMovie(movieId))
+  }
+
+  // hàm mở modal thêm lịch chiếu
+  const handleAddShowtime = (movieId) => {
+    handleModalShowtime()
+    setMovieAddShowtime(movieId)
+  }
+  // hàm tắt modal lịch chiếu
+  const handleCloseShowtime = () => {
+    handleModalShowtime()
+    setMovieAddShowtime(0)
   }
 
   return (
@@ -277,6 +298,13 @@ const MovieManagement = () => {
                               >
                                 <DeleteIcon onClick={() => {handleDelete(row.maPhim)}}/>
                               </IconButton>
+                              <IconButton
+                                color="primary"
+                                aria-label="upload picture"
+                                component="span"
+                              >
+                                <VideoCallIcon onClick={() => {handleAddShowtime(row.maPhim)}}/>
+                              </IconButton>
                             </TableCell>
                           );
                         }
@@ -304,11 +332,17 @@ const MovieManagement = () => {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
       </Paper>
+
       <Dialog
         open={open}
       >
         <ModalForm movieUpdate={movieSelect} onChangeIsUpdate={isUpdate} onReset={handleClose}/>
       </Dialog>
+      
+      <Dialog open={openShowtime}>
+        <ModalFormShowtime idMovieAdd={movieAddShowtime} onReset={handleCloseShowtime}/>
+      </Dialog>
+
     </MuiThemeProvider>
   );
 };

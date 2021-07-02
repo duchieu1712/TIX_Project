@@ -5,6 +5,9 @@ import {
   BOOKING_REQUEST,
   BOOKING_SUCCESS,
   BOOKING_FAIL,
+  ADD_SHOWTIME_REQUEST,
+  ADD_SHOWTIME_SUCCESS,
+  ADD_SHOWTIME_FAIL,
 } from "../constants/theater";
 
 import axios from "../../Utils/axiosClient";
@@ -52,3 +55,25 @@ export const bookingTicket = (danhSachVe) => {
       });
   };
 };
+
+export const addShowtime = (values) => {
+  return(dispatch) => {
+    dispatch({
+      type: ADD_SHOWTIME_REQUEST
+    })
+    axios
+      .post("QuanLyDatVe/TaoLichChieu", values)
+      .then(result => {
+        dispatch({
+          type: ADD_SHOWTIME_SUCCESS,
+          payload: {data: result.data}
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: ADD_SHOWTIME_FAIL,
+          payload: {error: error.response.data}
+        })
+      })
+  }
+}

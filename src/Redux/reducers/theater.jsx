@@ -5,6 +5,9 @@ import {
   BOOKING_REQUEST,
   BOOKING_SUCCESS,
   BOOKING_FAIL,
+  ADD_SHOWTIME_REQUEST,
+  ADD_SHOWTIME_SUCCESS,
+  ADD_SHOWTIME_FAIL,
 } from "../constants/theater";
 
 const initialState = {
@@ -46,6 +49,15 @@ const theaterReducer = (state = initialState, action) => {
         error: action.payload.error,
         loading: false
       }
+    }
+    case ADD_SHOWTIME_REQUEST: {
+      return {...state, loading: true}
+    }
+    case ADD_SHOWTIME_SUCCESS: {
+      return {...state, loading: false}
+    }
+    case ADD_SHOWTIME_FAIL: {
+      return {...state, loading: false, error: action.payload.error}
     }
 
     default:
