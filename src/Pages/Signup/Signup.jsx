@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { userSignUp } from '../../Redux/actions/user';
 import './Signup.scss';
 import signupUserSchema from '../../Utils/validation';
+import { NavLink } from 'react-router-dom';
 
 
 const Signup = () => {
@@ -11,6 +12,7 @@ const Signup = () => {
     const _handleSubmit = values => {
         console.log(values)
         dispatch(userSignUp(values));
+        alert('Đăng ký thành công !!!')
     };
     return (
         <div className="backGroundSignup">
@@ -88,9 +90,9 @@ const Signup = () => {
                                 {msg => <div className="errorMsg">{msg}</div>}
                             </ErrorMessage>
                         </div>
-                        <div className="text-center">
+                        <NavLink to="/login" >
                             <button className="btn btn-success">Đăng ký</button>
-                        </div>
+                        </NavLink>
                     </Form>
                 )}
             />

@@ -8,7 +8,6 @@ const Login = () => {
     const { currentUser, loading, error } = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
     const _handleSubmit = values => {
-        console.log(values);
         dispatch(userLogin(values));
     }
     useEffect (() => {
@@ -49,7 +48,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div>
+                        <div className="text-center">
                             <button
                                 disabled={loading}
                                 className="btn btn-success">Đăng nhập

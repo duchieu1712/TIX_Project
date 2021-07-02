@@ -6,8 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./style.js";
 import MenuIcon from "@material-ui/icons/Menu";
 import Hidden from "@material-ui/core/Hidden";
+import { NavLink } from "react-router-dom";
 
-const Header = ({onMobileNavOpen}) => {
+const Header = ({ onMobileNavOpen }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -17,15 +18,18 @@ const Header = ({onMobileNavOpen}) => {
             <IconButton
               className={classes.menuButton}
               color="inherit"
-              onClick={() => {onMobileNavOpen()}}
+              onClick={() => {
+                onMobileNavOpen();
+              }}
             >
               <MenuIcon />
             </IconButton>
           </Hidden>
-
-          <Typography className={classes.title} noWrap>
-            <img src="/img/web-logo.png" alt="" width="40" height="40" />
-          </Typography>
+          <NavLink to="/">
+            <Typography className={classes.title} noWrap>
+              <img src="/img/web-logo.png" alt="" width="40" height="40" />
+            </Typography>
+          </NavLink>
         </Toolbar>
       </AppBar>
     </div>

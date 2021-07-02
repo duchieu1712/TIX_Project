@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 import logo from "../../../Assets/img/web-logo.png";
 import avatar from "../../../Assets/img/avatar.png";
